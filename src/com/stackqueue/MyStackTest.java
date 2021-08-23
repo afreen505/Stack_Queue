@@ -1,14 +1,12 @@
 package com.stackqueue;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.jupiter.api.Test;
+import junit.framework.Assert;
+import org.junit.Test;
 
 public class MyStackTest {
+
     @Test
-    public void given3NumbersWhenAddedToStackShouldHaveLastAddedNode() {
+    public void popFromStack() {
         MyNode<Integer> myFirstNode = new MyNode<>(70);
         MyNode<Integer> mySecondNode = new MyNode<>(30);
         MyNode<Integer> myThirdNode = new MyNode<>(56);
@@ -19,10 +17,27 @@ public class MyStackTest {
         myStack.push(mySecondNode);
         myStack.push(myThirdNode);
 
+        INode topOfStack = myStack.pop();
+        Assert.assertEquals(myFirstNode, topOfStack);
+    }
+
+    @Test
+    public void popFromStackTillEmpty() {
+        MyNode<Integer> myFirstNode = new MyNode<>(70);
+        MyNode<Integer> mySecondNode = new MyNode<>(30);
+        MyNode<Integer> myThirdNode = new MyNode<>(56);
+
+        MyStack myStack = new MyStack();
+
+        myStack.push(myFirstNode);
+        myStack.push(mySecondNode);
+        myStack.push(myThirdNode);
+        System.out.println("List before popping is : ");
         myStack.printStack();
 
-        INode peakOfStack = myStack.peak();
-        Assert.assertEquals(myThirdNode, peakOfStack);
-
+        boolean result = myStack.popTillEmpty();
+        System.out.println("List after popping till empty is : ");
+        myStack.printStack();
+        Assert.assertTrue(result);
     }
 }
