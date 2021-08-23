@@ -8,7 +8,7 @@ public class MyLinkedList {
     public INode tail;
 
     MyLinkedList() {
-        this.head = null;\;
+        this.head = null;
         this.tail = null;
     }
 
